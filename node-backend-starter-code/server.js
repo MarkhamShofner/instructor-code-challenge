@@ -11,7 +11,8 @@ app.use(bodyParser.urlencoded({
 }));
 // ^TODO - needed?^
 
-app.use('/', express.static(path.join(__dirname, 'public')));
+app.get('/', express.static(path.join(__dirname, 'public')));
+// TODO potentially remove / adjust this call for some sort of index show
 
 app.get('/favorites', function(req, res) {
   var data = fs.readFileSync('./data.json');
