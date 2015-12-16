@@ -21,7 +21,27 @@ function index (response) {
   clear();
   for (var i=0; i<response.Search.length; i++) {
     var detail = "<ul class='movie-details' attr='"+response.Search[i].imdbID+"'>" + response.Search[i].Title + "</ul>";
+
+    // var moreButton = "<button attr='"+response.Search[i].imdbID+"'> More </button>";
+
+    // event listener so that when a movie-div is clicked, the associated title of
+    // that movie is taken and used as a new call to the o
+    // $detail.click(function(e){
+    //   // e.preventDefault();
+    //   console.log(e);
+    //   console.log("div was clicked");
+    //   index(input);
+    // });
+
+
+
     $("#movies-details").append(detail);
+    // $("#movies-details").append(moreButton);
+
+    $("ul[attr='"+response.Search[i].imdbID+"']").click(function(){
+      console.log(this);
+      console.log($(this).attr("attr"));
+    });
   }
 }
 
@@ -42,13 +62,4 @@ $("#search").on("submit", function(e){
   var input = $inputText.val();
   $inputText.val("");
   search(input);
-});
-
-// event listener so that when a movie-div is clicked, the associated title of
-// that movie is taken and used as a new call to the o
-$(".movie-details").click(function(e){
-  // e.preventDefault();
-  console.log(e);
-  console.log("div was clicked");
-  index(input);
 });
