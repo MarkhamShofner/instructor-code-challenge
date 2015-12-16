@@ -7,25 +7,29 @@ function search(input) {
   .done(function(response){
     console.log("response success!");
     console.log(response);
-    show (response);
+    index (response);
   })
   .fail(function(response){
     console.log("response fail!");
   });
 }
 
-// show function that takes a response input, and appends information from each
+// index function that takes a response input, and appends information from each
 // object in the response array to a div on the primary index page. also invokes
 // the clear function to begin, which clears that same div.
-function show (response) {
+function index (response) {
   clear();
   for (var i=0; i<response.Search.length; i++) {
-    var detail = "<h2>" + response.Search[i].Title + "</h2>";
+    var detail = "<ul class='movie-details' attr='"+response.Search[i].imdbID+"'>" + response.Search[i].Title + "</ul>";
     $("#movies-details").append(detail);
   }
 }
 
-// clears the #movie-details div on the main index page
+function show (film) {
+  console.log(film);
+}
+
+// clears the #movies-details div on the main index page
 function clear () {
   $("#movies-details").html("");
 }
@@ -38,4 +42,13 @@ $("#search").on("submit", function(e){
   var input = $inputText.val();
   $inputText.val("");
   search(input);
+});
+
+// event listener so that when a movie-div is clicked, the associated title of
+// that movie is taken and used as a new call to the o
+$(".movie-details").click(function(e){
+  // e.preventDefault();
+  console.log(e);
+  console.log("div was clicked");
+  index(input);
 });
