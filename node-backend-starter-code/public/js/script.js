@@ -6,23 +6,32 @@ function search(input) {
   $.getJSON(url)
   .done(function(response){
     console.log("response success!");
-    response1 = response;
+    console.log(response);
+    show (response);
   })
   .fail(function(response){
     console.log("response fail!");
   });
 }
 
-// on click event, takes the input from the search field and executes the search function
+function show (response) {
+  clear();
+  for (var i=0; i<response.Search.length; i++) {
+    var detail = "<h2>" + response.Search[i].Title + "</h2>";
+    $("#movies-details").append(detail);
+  }
+}
+
+function clear () {
+  $("#movies-details").html("");
+}
+
 $("#search").on("submit", function(e){
-  debugger;
-  console.log("test0");
+  console.log("test1");
   e.preventDefault();
-  console.log("test");
   var $inputText = $("#movie-search");
-  console.log("test2");
   var input = $inputText.val();
   $inputText.val("");
-  console.log("test3");
+  console.log("test2");
   search(input);
 });
