@@ -39,14 +39,31 @@ function index (response) {
     // $("#movies-details").append(moreButton);
 
     $("ul[attr='"+response.Search[i].imdbID+"']").click(function(){
-      console.log(this);
-      console.log($(this).attr("attr"));
+      idExtracted = $(this).attr("attr");
+      singleSearch (idExtracted);
     });
   }
 }
 
-function show (film) {
-  console.log(film);
+function show (response) {
+  var movieDetails =
+    "<h6 class='release'> Release Date:"+response.Released+"</h6>"+
+    "<img src="+response.Poster+">"+
+    "<h6 class='plot'> Plot:"+response.Plot+"</h6>";
+  $("ul[attr='"+response.imdbID+"']").append(movieDetails);
+}
+
+function singleSearch (id) {
+  var url = "http://www.omdbapi.com/?i="+escape(id);
+  $.getJSON(url)
+  .done(function(response){
+    console.log("single response success!");
+    console.log(response);
+    show (response);
+  })
+  .fail(function(response){
+    console.log("single response fail!");
+  });
 }
 
 // clears the #movies-details div on the main index page
