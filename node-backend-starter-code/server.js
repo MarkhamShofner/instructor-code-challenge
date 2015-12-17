@@ -1,15 +1,16 @@
 var express = require('express');
-var app = express();
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/movies'); //potentially change on deployment
 var fs = require('fs');
 var path = require('path');
 var bodyParser = require('body-parser');
+var app = express();
 
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-  extended: false
+  extended: false // TODO <----potentially true? what is this part doing
 }));
-// ^TODO - needed?^
 
 app.get('/', express.static(path.join(__dirname, 'public')));
 // TODO potentially remove / adjust this call for some sort of index show
@@ -27,12 +28,14 @@ app.get('favorites', function(req, res) {
     // ^return what?
   } else {}
   //figure out purpose for this chunk of code
-  var data = JSON.parse(fs.readFileSync('./data.json'));
-  data.push(req.body);
-  fs.writeFile('./data.json', JSON.stringify(data));
-  res.setHeader('Content-Type', 'application/json');
-  res.send(data);
+  // var data = JSON.parse(fs.readFileSync('./data.json'));
+  // data.push(req.body);
+  // fs.writeFile('./data.json', JSON.stringify(data));
+  // res.setHeader('Content-Type', 'application/json');
+  // res.send(data);
 });
+
+// set up routes
 
 app.listen(3000, function() {
   console.log("Listening on port 3000");
