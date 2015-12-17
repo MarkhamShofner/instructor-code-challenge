@@ -17,7 +17,7 @@ var movies = {
     self = this;
     var input = document.getElementById("movie-search").value;
     console.log(input);
-    var url = "http://www.omdbapi.com/?s=" + escape(input);
+    var url = "https://www.omdbapi.com/?s=" + escape(input);
     $.getJSON(url)
       .done(function(response) {
         console.log("groupResponse success!");
@@ -51,7 +51,7 @@ var movies = {
   searchSingle: function(id) {
     self = this;
     console.log(id);
-    var url = "http://www.omdbapi.com/?i=" + escape(id);
+    var url = "https://www.omdbapi.com/?i=" + escape(id);
     $.getJSON(url)
       .done(function(response) {
         console.log("single response success!");
