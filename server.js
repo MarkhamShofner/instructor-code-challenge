@@ -1,6 +1,6 @@
 var express = require('express');
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/movies'); //potentially change on deployment
+// var mongoose = require('mongoose');
+// mongoose.connect('mongodb://localhost/movies'); //potentially change on deployment
 var fs = require('fs');
 var path = require('path');
 var bodyParser = require('body-parser');
