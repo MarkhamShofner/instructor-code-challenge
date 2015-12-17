@@ -51,6 +51,8 @@ var movies = {
         favorites.favoriteClicked(idExtracted);
       });
 
+      // reassign self as this
+      self= this;
       $("div[attr='" + moviesList[i].imdbID + "']").click(function() {
         idExtracted = $(this).attr("attr");
         self.movieClick(idExtracted);
