@@ -26,7 +26,7 @@ var movies = {
       })
       .fail(function(response) {
         console.log("groupResponse fail!");
-      })
+      });
   },
   groupOMDB: function() {
     self = this;
@@ -63,21 +63,20 @@ var movies = {
       });
   },
   displaySingle: function(response) {
-    console.log("displaysing");
     self = this;
     var movieDetails =
-      "<div id='" + response.imdbID + "'class='details'><h6 class='release'> Release Date:" + response.Released + "</h6>" +
+      "<div id='" + response.imdbID + "'class='details'><h6 class='release'> Release Date: " + response.Released + "</h6>" +
       "<img class='poster' src=" + response.Poster + ">" +
-      "<h6 class='plot'> Plot:" + response.Plot + "</h6></div>";
+      "<h6 class='plot'> Plot: " + response.Plot + "</h6></div>";
     $("ul[attr='" + response.imdbID + "']").append(movieDetails);
-    document.getElementById(response.imdbID).style.display = "none"
+    document.getElementById(response.imdbID).style.display = "none";
   },
   movieClick: function(id){
     var displayState = document.getElementById(""+ id + "").style.display;
     if (displayState === "none") {
-    document.getElementById(""+ id + "").style.display = "block"
+    document.getElementById(""+ id + "").style.display = "block";
     } else {
-      document.getElementById(""+ id + "").style.display = "none"
+      document.getElementById(""+ id + "").style.display = "none";
     }
   },
   clearArea: function() {
