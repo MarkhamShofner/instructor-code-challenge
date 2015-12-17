@@ -7,7 +7,7 @@ var favorites = {
       type: 'POST',
       dataType: 'json',
       url: "/favorites",
-      data: id,
+      data: {"id": id},
     }).done(function(response) {
       console.log(response);
       for (var i = 0; i < response.length; i++) {
