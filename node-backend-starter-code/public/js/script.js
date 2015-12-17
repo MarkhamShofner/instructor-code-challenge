@@ -76,12 +76,9 @@ var movies = {
 };
 
 
-// // event listener so that when the #search form is submitted, the value in the
-// // #movie-search field is taken as used as an input for the search function.
-// $("#search").on("submit", function(e) {
-//   e.preventDefault();
-//   var $inputText = $("#movie-search");
-//   var input = $inputText.val();
-//   $inputText.val("");
-//   search(input);
-// });
+// event listener so that when the #search form is submitted, the value in the
+// #movie-search field is taken as used as an input for the search function.
+$("#search").on("submit", function(e) {
+  e.preventDefault();
+  movies.callSearch();
+});
