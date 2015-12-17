@@ -26,19 +26,16 @@ app.get('/favorites', function(req, res) {
 // post route for favorites
 app.post('favorites', function(req, res) {
   if (!req.body.name || !req.body.oid) {
+    var data = JSON.parse(fs.readFileSync('./data.json'));
+    data.push(req.body);
+    fs.writeFile('./data.json', JSON.stringify(data));
+    res.setHeader('Content-Type', 'application/json');
+    res.send(data);
+  } else {
+    console.log("error");
     res.send("Error");
-    // return;
-    // ^return what?
-  } else {}
-  //figure out purpose for this chunk of code
-  // var data = JSON.parse(fs.readFileSync('./data.json'));
-  // data.push(req.body);
-  // fs.writeFile('./data.json', JSON.stringify(data));
-  // res.setHeader('Content-Type', 'application/json');
-  // res.send(data);
+  }
 });
-
-// set up routes
 
 app.listen(process.env.PORT || 3000, function() {
   console.log("Listening on port 3000");
