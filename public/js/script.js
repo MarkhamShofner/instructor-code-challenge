@@ -35,14 +35,23 @@ var movies = {
     for (var i = 0; i < moviesList.length; i++) {
       console.log(moviesList[i].Title);
       var title =
-        "<ul class='movie-details' attr='" + moviesList[i].imdbID + "'>" + moviesList[i].Title + "</ul>";
+        "<div class='movie-details' attr='" + moviesList[i].imdbID + "'>" + moviesList[i].Title + "</div>" +
+        " <button attr='" + moviesList[i].imdbID + "'>favorite</button>";
 
       $("#movies-details").append(title);
 
       idExtracted = moviesList[i].imdbID;
       self.searchSingle(idExtracted);
 
-      $("ul[attr='" + moviesList[i].imdbID + "']").click(function() {
+      console.log(idExtracted);
+
+      $("button[attr='" + moviesList[i].imdbID + "']").click(function(e) {
+        e.preventDefault();
+        idExtracted = $(this).attr("attr");
+        favorites.favoriteClicked(idExtracted);
+      });
+
+      $("div[attr='" + moviesList[i].imdbID + "']").click(function() {
         idExtracted = $(this).attr("attr");
         self.movieClick(idExtracted);
       });
@@ -68,15 +77,15 @@ var movies = {
       "<div id='" + response.imdbID + "'class='details'><h6 class='release'> Release Date: " + response.Released + "</h6>" +
       "<img class='poster' src=" + response.Poster + ">" +
       "<h6 class='plot'> Plot: " + response.Plot + "</h6></div>";
-    $("ul[attr='" + response.imdbID + "']").append(movieDetails);
+    $("div[attr='" + response.imdbID + "']").append(movieDetails);
     document.getElementById(response.imdbID).style.display = "none";
   },
-  movieClick: function(id){
-    var displayState = document.getElementById(""+ id + "").style.display;
+  movieClick: function(id) {
+    var displayState = document.getElementById("" + id + "").style.display;
     if (displayState === "none") {
-    document.getElementById(""+ id + "").style.display = "block";
+      document.getElementById("" + id + "").style.display = "block";
     } else {
-      document.getElementById(""+ id + "").style.display = "none";
+      document.getElementById("" + id + "").style.display = "none";
     }
   },
   clearArea: function() {

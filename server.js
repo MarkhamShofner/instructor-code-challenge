@@ -24,7 +24,7 @@ app.get('/favorites', function(req, res) {
 });
 
 // post route for favorites
-app.post('favorites', function(req, res) {
+app.post('/favorites', function(req, res) {
   if (!req.body.name || !req.body.oid) {
     var data = JSON.parse(fs.readFileSync('./data.json'));
     data.push(req.body);
