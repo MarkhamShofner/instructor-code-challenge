@@ -63,15 +63,13 @@ var movies = {
     console.log("displaysing");
     self = this;
     var movieDetails =
-      "<h6 class='release'> Release Date:" + response.Released + "</h6>" +
-      "<img src=" + response.Poster + ">" +
-      "<h6 class='plot'> Plot:" + response.Plot + "</h6>";
+      "<div class='details'><h6 class='release'> Release Date:" + response.Released + "</h6>" +
+      "<img class='poster' src=" + response.Poster + ">" +
+      "<h6 class='plot'> Plot:" + response.Plot + "</h6></div>";
     $("ul[attr='" + response.imdbID + "']").append(movieDetails);
   },
   clearArea: function() {
-    //get this working or switch out for a toggle on/off function
-    //document.getElementById("movies-details").value = "";
-    $("#movies-details").html("");
+    document.getElementById("movies-details").innerHtml = ""
   }
 };
 
