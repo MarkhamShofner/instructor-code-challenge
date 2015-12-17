@@ -1,5 +1,52 @@
 // "use strict";
 
+
+var movies = {
+  omdbResponse: {},
+  callSearch: function(){
+    self = this;
+    //clear the display area before populating
+    self.clearArea();
+    //reset response
+    self.omdbResponse = {};
+    //call searchOMDB function
+    self.searchOMDB();
+    console.log("check");
+    console.log(self.omdbResponse);
+  },
+  searchOMDB: function() {
+    self = this;
+    var input = document.getElementById("movie-search").value;
+    console.log(input);
+    var url = "http://www.omdbapi.com/?s="+escape(input);
+    $.getJSON(url)
+      .done(function(response){
+        console.log("groupResponse success!");
+        self.omdbResponse = response;
+        self.displayOMDB();
+      })
+      .fail(function(response){
+        console.log("groupResponse fail!");
+      })
+  },
+  displayOMDB: function() {
+    self=this;
+    console.log(self.omdbResponse);
+    for (var i=0; i<self.omdbResponse.Search.length; i++) {
+      console.log(i);
+
+    }
+  },
+  clearArea: function(){
+    //get this working or switch out for a toggle on/off function
+    //document.getElementById("movies-details").value = "";
+    $("#movies-details").html("");
+  }
+};
+
+
+
+
 // search function which receives an input and produces a response via the OMDBapi
 function search(input) {
   var url = "http://www.omdbapi.com/?s="+escape(input);
@@ -22,21 +69,8 @@ function index (response) {
   for (var i=0; i<response.Search.length; i++) {
     var detail = "<ul class='movie-details' attr='"+response.Search[i].imdbID+"'>" + response.Search[i].Title + "</ul>";
 
-    // var moreButton = "<button attr='"+response.Search[i].imdbID+"'> More </button>";
-
-    // event listener so that when a movie-div is clicked, the associated title of
-    // that movie is taken and used as a new call to the o
-    // $detail.click(function(e){
-    //   // e.preventDefault();
-    //   console.log(e);
-    //   console.log("div was clicked");
-    //   index(input);
-    // });
-
-
-
     $("#movies-details").append(detail);
-    // $("#movies-details").append(moreButton);
+
 
     $("ul[attr='"+response.Search[i].imdbID+"']").click(function(){
       idExtracted = $(this).attr("attr");
