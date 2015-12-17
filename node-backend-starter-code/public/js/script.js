@@ -39,10 +39,13 @@ var movies = {
 
       $("#movies-details").append(title);
 
-      $("ul[attr='" + moviesList[i].imdbID + "']").click(function() {
-        idExtracted = $(this).attr("attr");
-        self.searchSingle(idExtracted);
-      });
+      idExtracted = moviesList[i].imdbID;
+      self.searchSingle(idExtracted);
+      
+      // $("ul[attr='" + moviesList[i].imdbID + "']").click(function() {
+      //   idExtracted = $(this).attr("attr");
+      //   self.searchSingle(idExtracted);
+      // });
     }
   },
   searchSingle: function(id) {
@@ -69,7 +72,8 @@ var movies = {
     $("ul[attr='" + response.imdbID + "']").append(movieDetails);
   },
   clearArea: function() {
-    document.getElementById("movies-details").innerHtml = ""
+    // document.getElementById("movies-details").innerHtml = ""
+    $("#movies-details").html("");
   }
 };
 
