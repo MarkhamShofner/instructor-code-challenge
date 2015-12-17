@@ -9,19 +9,22 @@ var app = express();
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-  extended: false // TODO <----potentially true? what is this part doing
+  extended: false // TODO <----potentially true?
 }));
 
 app.get('/', express.static(path.join(__dirname, 'public')));
 // TODO potentially remove / adjust this call for some sort of index show
 
 app.get('/favorites', function(req, res) {
+  console.log("***get favorites***");
   var data = fs.readFileSync('./data.json');
   res.setHeader('Content-Type', 'application/json');
+  console.log(data);
   res.send(data);
 });
 
-app.get('favorites', function(req, res) {
+// post route for favorites
+app.post('favorites', function(req, res) {
   if (!req.body.name || !req.body.oid) {
     res.send("Error");
     // return;
