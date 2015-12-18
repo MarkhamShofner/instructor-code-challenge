@@ -45,7 +45,7 @@ var favorites = {
     var self = this;
     console.log(favoriteId.id);
     var favorite = "<p id='" + favoriteId.id + "'class='details'></p>";
-    $("#favorites-list").append(favorite);
+    $("#favorites-details").append(favorite);
     this.searchSingle(favoriteId.id);
   },
   searchSingle: function(id) {
@@ -70,9 +70,16 @@ var favorites = {
       "<h6 class='plot'> Plot: " + response.Plot + "</h6></div>";
     $("p[id='" + response.imdbID + "']").append(movieDetails);
   },
+  hideFavorites: function () {
+    $("#favorites-details").html("");
+  }
 };
 
 $("#favorites-list").click(function(e) {
   e.preventDefault();
   favorites.retrieveFavorites();
+});
+$("#favorites-hide").click(function(e) {
+  e.preventDefault();
+  favorites.hideFavorites();
 });
