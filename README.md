@@ -1,8 +1,17 @@
+#### Markham Shofner Submission
+- Link to my deployed site (https://dirapppp.herokuapp.com/)on Heroku 
+- This app uses both vanilla JavaScript and a JavaScript MVC library. Benefits of an MVC library include easier/faster syntax to remember and implement. Drawbacks include potentially slower times, as the page must load a library initially. Additionally, a challenge for a student learning the library could be the time required to build the requisite knowledge capital needed to implement the beneficial aspects of that library.
+
+
+***
+***
+
+
 ![GA Logo](https://raw.github.com/generalassembly/ga-ruby-on-rails-for-devs/master/images/ga.png)
 
 ## WDI Instructor Code Challenge
 
-### GOAL 
+### GOAL
 
 > Create a single page application that will utilize an external API to request movie data. The client side application will be served by a back-end which will have the ability to persist data.
 
@@ -37,7 +46,7 @@
 
 #### Deliverables
 
-- Please send us back a link to a git repo with the completed code challenge. 
+- Please send us back a link to a git repo with the completed code challenge.
 
 - Include a README.md file in your repo with a link to your application deployed on Heroku or Digital Ocean.
 
