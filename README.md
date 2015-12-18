@@ -1,5 +1,5 @@
 #### Markham Shofner Submission
-- Link to my deployed site (https://dirapppp.herokuapp.com/)on Heroku 
+- Link to my deployed site (https://dirapppp.herokuapp.com/) on Heroku 
 - This app uses both vanilla JavaScript and a JavaScript MVC library. Benefits of an MVC library include easier/faster syntax to remember and implement. Drawbacks include potentially slower times, as the page must load a library initially. Additionally, a challenge for a student learning the library could be the time required to build the requisite knowledge capital needed to implement the beneficial aspects of that library.
 
 
