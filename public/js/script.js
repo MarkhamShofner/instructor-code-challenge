@@ -1,20 +1,18 @@
-// "use strict";
-
+// declare a movies object
 var movies = {
   omdbResponse: {},
+  // define a callSearch function, which sets the stage for the following functions
   callSearch: function() {
-    self = this;
+    var self = this;
     //clear the display area before populating
     self.clearArea();
-    //reset response
+    //reset response object
     self.omdbResponse = {};
     //call searchOMDB function
     self.searchOMDB();
-    console.log("check");
-    console.log(self.omdbResponse);
   },
   searchOMDB: function() {
-    self = this;
+    var self = this;
     var input = document.getElementById("movie-search").value;
     console.log(input);
     var url = "https://www.omdbapi.com/?s=" + escape(input);
@@ -29,7 +27,7 @@ var movies = {
       });
   },
   groupOMDB: function() {
-    self = this;
+    var self = this;
     moviesList = self.omdbResponse.Search;
     console.log(self.omdbResponse);
     for (var i = 0; i < moviesList.length; i++) {
@@ -52,7 +50,7 @@ var movies = {
       });
 
       // reassign self as this
-      self= this;
+      // self= this;
       $("div[attr='" + moviesList[i].imdbID + "']").click(function() {
         idExtracted = $(this).attr("attr");
         self.movieClick(idExtracted);
@@ -60,7 +58,7 @@ var movies = {
     }
   },
   searchSingle: function(id) {
-    self = this;
+    var self = this;
     console.log(id);
     var url = "https://www.omdbapi.com/?i=" + escape(id);
     $.getJSON(url)
@@ -74,7 +72,7 @@ var movies = {
       });
   },
   displaySingle: function(response) {
-    self = this;
+    var self = this;
     var movieDetails =
       "<div id='" + response.imdbID + "'class='details'><h6 class='release'> Release Date: " + response.Released + "</h6>" +
       "<img class='poster' src=" + response.Poster + ">" +
