@@ -1,6 +1,5 @@
+// set requirements
 var express = require('express');
-// var mongoose = require('mongoose');
-// mongoose.connect('mongodb://localhost/movies'); //potentially change on deployment
 var fs = require('fs');
 var path = require('path');
 var bodyParser = require('body-parser');
@@ -9,11 +8,11 @@ var app = express();
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-  extended: false // TODO <----potentially true?
+  extended: false
 }));
 
+// get main route
 app.get('/', express.static(path.join(__dirname, 'public')));
-// TODO potentially remove / adjust this call for some sort of index show
 
 // get route for favorites data
 app.get('/favorites', function(req, res) {
@@ -24,7 +23,7 @@ app.get('/favorites', function(req, res) {
   res.send(data);
 });
 
-// post route for favorites
+// post route for favorites data
 app.post('/favorites', function(req, res) {
   if (!req.body.name || !req.body.oid) {
     var data = JSON.parse(fs.readFileSync('./data.json'));

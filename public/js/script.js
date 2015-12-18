@@ -26,31 +26,37 @@ var movies = {
         console.log("groupResponse fail!");
       });
   },
+  // displayOMDB using the returned search
   groupOMDB: function() {
+    // set self variable
     var self = this;
+    // set moviesList using the response form omdb
     moviesList = self.omdbResponse.Search;
     console.log(self.omdbResponse);
+    // loop to create the required html for each movie returned in the moviesList
     for (var i = 0; i < moviesList.length; i++) {
+      // test the looped title with a console log
       console.log(moviesList[i].Title);
+
+      // create the looped title
       var title =
         "<div class='movie-details' attr='" + moviesList[i].imdbID + "'>" + moviesList[i].Title + "</div>" +
         " <button attr='" + moviesList[i].imdbID + "'>favorite</button>";
 
+      // add the looped title to the movieDetails
       $("#movies-details").append(title);
 
       idExtracted = moviesList[i].imdbID;
       self.searchSingle(idExtracted);
 
-      console.log(idExtracted);
-
+      // event listener for adding favorites
       $("button[attr='" + moviesList[i].imdbID + "']").click(function(e) {
         e.preventDefault();
         idExtracted = $(this).attr("attr");
         favorites.favoriteClicked(idExtracted);
       });
 
-      // reassign self as this
-      // self= this;
+      // event listener for displaying movies
       $("div[attr='" + moviesList[i].imdbID + "']").click(function() {
         idExtracted = $(this).attr("attr");
         self.movieClick(idExtracted);
