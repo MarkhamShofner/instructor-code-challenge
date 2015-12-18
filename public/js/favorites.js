@@ -1,3 +1,4 @@
+// declare favorites object variable, very similar logic to movies variable
 var favorites = {
   favoritesList: [],
   favoriteClicked: function(id) {
@@ -68,11 +69,7 @@ var favorites = {
       "<img class='poster' src=" + response.Poster + ">" +
       "<h6 class='plot'> Plot: " + response.Plot + "</h6></div>";
     $("p[id='" + response.imdbID + "']").append(movieDetails);
-    // document.getElementById(response.imdbID).style.display = "none";
   },
-  // searchSingle: function(favoriteId){
-  //   self = this;
-  // }
 };
 
 $("#favorites-list").click(function(e) {

@@ -1,5 +1,6 @@
-// declare a movies object
+// declare a movies object for use throughout the app
 var movies = {
+  // sets an omdbResponse mule object
   omdbResponse: {},
   // define a callSearch function, which sets the stage for the following functions
   callSearch: function() {
@@ -11,6 +12,7 @@ var movies = {
     //call searchOMDB function
     self.searchOMDB();
   },
+  // searchOMDB for a group response using the current contents of movie-search
   searchOMDB: function() {
     var self = this;
     var input = document.getElementById("movie-search").value;
@@ -20,6 +22,7 @@ var movies = {
       .done(function(response) {
         console.log("groupResponse success!");
         self.omdbResponse = response;
+        // call groupOMDB function after assigning self.omdbResponse
         self.groupOMDB();
       })
       .fail(function(response) {
@@ -63,6 +66,7 @@ var movies = {
       });
     }
   },
+  // take a single id and make a specific individual query to OMDBapi
   searchSingle: function(id) {
     var self = this;
     console.log(id);
@@ -71,12 +75,14 @@ var movies = {
       .done(function(response) {
         console.log("single response success!");
         console.log(response);
+        // call the displaySingle function using single response
         self.displaySingle(response);
       })
       .fail(function(response) {
         console.log("single response fail!");
       });
   },
+  // take the single response and place it on the page
   displaySingle: function(response) {
     var self = this;
     var movieDetails =
@@ -86,6 +92,7 @@ var movies = {
     $("div[attr='" + response.imdbID + "']").append(movieDetails);
     document.getElementById(response.imdbID).style.display = "none";
   },
+  // toggle the display state of the movie element
   movieClick: function(id) {
     var displayState = document.getElementById("" + id + "").style.display;
     if (displayState === "none") {
@@ -94,8 +101,8 @@ var movies = {
       document.getElementById("" + id + "").style.display = "none";
     }
   },
+  // clear the movies-details area
   clearArea: function() {
-    // document.getElementById("movies-details").innerHtml = ""
     $("#movies-details").html("");
   }
 };
